@@ -18,7 +18,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
         # Login
         if self.path.endswith('/login'):
             self.send_response(200)
-            
+            return
 
         # Categories Form
         if self.path.endswith("/categories/new"):
