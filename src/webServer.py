@@ -14,6 +14,13 @@ session = DBSession()
 class WebServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+
+        # Login
+        if self.path.endswith('/login'):
+            self.send_response(200)
+            
+
+        # Categories Form
         if self.path.endswith("/categories/new"):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
@@ -28,6 +35,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(output)
             return
 
+        # Categories Index
         if(self.path.endswith("/categories")):
             categories = session.query(Category).all()
             output = ""
@@ -50,25 +58,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(output)
             return
 
-        if self.path.endswith("/hello"):
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            output = ""
-            output += "<html><body>Hello!"
-            output += """
-                <form method='POST' enctype='multipart/form-data' action='/hello'>
-                    <h2>What would you like me to say?</h2>
-                    <input name='message' type='text'>
-                    <input type='submit' value='Submit'>
-                </form>
-            """
-            output += "</body></html>"
-            self.wfile.write(output)
-            print(output)
-            return
-        else:
-            self.send_error(404, 'File Not Found: %s' % self.path)
+            # Log
 
     def do_POST(self):
         try:
