@@ -19,3 +19,5 @@
 - Git
 - Vagrant
 - VirtualBox
+
+A example environment file has been provided to show what variables need to be entered in order for the application to run successfully.

@@ -1,2 +1,6 @@
-/vagrant
+/.vagrant
 *.db
+/*.sh
+/Vagrantfile
+/__pycache__
+.env
